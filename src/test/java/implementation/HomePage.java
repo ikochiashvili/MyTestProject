@@ -56,12 +56,11 @@ public class HomePage extends PageObject {
         List<WebElement> list;
         boolean found = false;
         int pageNumber;
-        for ( pageNumber=0;pageNumber<9 && ! found; pageNumber++) {
-            // pageNumber <9 because on this step the 1st page is already covered
+        for ( pageNumber=0;pageNumber<10 && ! found; pageNumber++) {
             waitABit(1000);
             list = driver.findElements(By.xpath((String.format(siteName, text))));
             found = list.size() > 0;
-            driver.findElement(nextButton).click();
+           if (!found) driver.findElement(nextButton).click();
         }
         Assert.assertTrue("Hadrian site not found!", found);
         System.out.println("Hadrian corporate site is on #" + pageNumber + " page");
